@@ -1,7 +1,5 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "@Pv3Moddz Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "RaceClickTest"})
-local lp = game:GetService("Players").LocalPlayer
-local LP = lp.Character.HumanoidRootPart
 
 _AutoPower = 1
 _AutoDiamond = 1
