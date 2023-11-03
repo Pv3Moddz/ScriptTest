@@ -1,0 +1,87 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "RaceClickTest", HidePremium = false, SaveConfig = true, ConfigFolder = "RaceClickTest"})
+local lp = game:GetService("Players").LocalPlayer
+local LP = lp.Character.HumanoidRootPart
+
+_AutoClick = false
+_AutoClickValue = 1
+_AutoWin = false
+_AutoWinValue = 1
+
+function AutoWin()
+    while _AutoWin == true do
+        if lp.PlayerGui.TimerUI.RaceTimer.Visible then
+            LP.CFrame = LP.CFrame + Vector.new(50000, 0, 0)
+            wait(_AutoWinValue)
+        end
+    end
+end
+
+function AutoClick()
+    if lp.PlayerGui.ClicksUI.ClickHelper.Visible == true then
+        while _AutoClick == true do
+            game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ClickService"):WaitForChild("RF"):WaitForChild("Click"):InvokeServer()
+            wait(_AutoClickValue)
+        end
+    end
+end
+
+local Tab = Window:MakeTab({
+	Name = "RaceClick",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "CLICK SETTINGS"
+})
+
+Tab:AddSlider({
+	Name = "Delay Auto Click",
+	Min = 0,
+	Max = 1000,
+	Default = 1000,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 10,
+	ValueName = "MilleSeg",
+	Callback = function(Value)
+		_AutoClickValue = Value / 1000
+	end
+})
+
+Tab:AddToggle({
+	Name = "Auto Click",
+	Default = false,
+	Callback = function(Value)
+		_AutoClick = Value
+		AutoClick()
+	end
+})
+
+local Section = Tab:AddSection({
+	Name = "WIN SETTINGS"
+})
+
+Tab:AddSlider({
+	Name = "Delay Auto Win",
+	Min = 0,
+	Max = 1000,
+	Default = 1000,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 10,
+	ValueName = "MilleSeg",
+	Callback = function(Value)
+		_AutoWinValue = Value / 1000
+	end
+})
+
+Tab:AddToggle({
+	Name = "Auto Win",
+	Default = false,
+	Callback = function(Value)
+		_AutoWin = Value
+		AutoWin()
+	end
+})
+
+OrionLib:Init()
