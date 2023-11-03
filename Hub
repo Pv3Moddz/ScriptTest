@@ -31,7 +31,7 @@ Tab:AddToggle({
 	Name = "Auto Power",
 	Default = false,
 	Callback = function(Value)
-        while Value do
+        while Value == true do
             game:GetService("ReplicatedStorage").Remotes.TrainBombStrength:FireServer("Bomb 14")
             wait(_AutoPower)
         end
@@ -55,7 +55,7 @@ Tab:AddToggle({
 	Name = "Auto Diamond",
 	Default = false,
 	Callback = function(Value)
-        while Value do
+        while Value == true do
             game:GetService("ReplicatedStorage").Remotes.GetGem:FireServer()
             wait(_AutoDiamond)
         end
