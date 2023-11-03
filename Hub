@@ -3,41 +3,21 @@ local Window = OrionLib:MakeWindow({Name = "RaceClickTest", HidePremium = false,
 local lp = game:GetService("Players").LocalPlayer
 local LP = lp.Character.HumanoidRootPart
 
-_AutoClick = false
-_AutoClickValue = 1
-_AutoWin = false
-_AutoWinValue = 1
-
-function AutoWin()
-    while _AutoWin == true do
-        if lp.PlayerGui.TimerUI.RaceTimer.Visible then
-            LP.CFrame = LP.CFrame + Vector.new(50000, 0, 0)
-            wait(_AutoWinValue)
-        end
-    end
-end
-
-function AutoClick()
-    if lp.PlayerGui.ClicksUI.ClickHelper.Visible == true then
-        while _AutoClick == true do
-            game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ClickService"):WaitForChild("RF"):WaitForChild("Click"):InvokeServer()
-            wait(_AutoClickValue)
-        end
-    end
-end
+_AutoPower = 1
+_AutoDiamond = 1
 
 local Tab = Window:MakeTab({
-	Name = "RaceClick",
+	Name = "@Pv3Moddz Hub",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
 local Section = Tab:AddSection({
-	Name = "CLICK SETTINGS"
+	Name = "SETTINGS"
 })
 
 Tab:AddSlider({
-	Name = "Delay Auto Click",
+	Name = "Delay Auto Power",
 	Min = 0,
 	Max = 1000,
 	Default = 1000,
@@ -45,25 +25,23 @@ Tab:AddSlider({
 	Increment = 10,
 	ValueName = "MilleSeg",
 	Callback = function(Value)
-		_AutoClickValue = Value / 1000
+		_AutoPower = Value / 1000
 	end
 })
 
 Tab:AddToggle({
-	Name = "Auto Click",
+	Name = "Auto Power",
 	Default = false,
 	Callback = function(Value)
-		_AutoClick = Value
-		AutoClick()
+        while Value do
+            game:GetService("ReplicatedStorage").Remotes.TrainBombStrength:FireServer("Bomb 14")
+            wait(_AutoPower)
+        end
 	end
 })
 
-local Section = Tab:AddSection({
-	Name = "WIN SETTINGS"
-})
-
 Tab:AddSlider({
-	Name = "Delay Auto Win",
+	Name = "Delay Auto Diamond",
 	Min = 0,
 	Max = 1000,
 	Default = 1000,
@@ -71,16 +49,18 @@ Tab:AddSlider({
 	Increment = 10,
 	ValueName = "MilleSeg",
 	Callback = function(Value)
-		_AutoWinValue = Value / 1000
+		_AutoDiamond = Value / 1000
 	end
 })
 
 Tab:AddToggle({
-	Name = "Auto Win",
+	Name = "Auto Diamond",
 	Default = false,
 	Callback = function(Value)
-		_AutoWin = Value
-		AutoWin()
+        while Value do
+            game:GetService("ReplicatedStorage").Remotes.GetGem:FireServer()
+            wait(_AutoDiamond)
+        end
 	end
 })
 
