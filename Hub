@@ -1,5 +1,5 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "RaceClickTest", HidePremium = false, SaveConfig = true, ConfigFolder = "RaceClickTest"})
+local Window = OrionLib:MakeWindow({Name = "@Pv3Moddz Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "RaceClickTest"})
 local lp = game:GetService("Players").LocalPlayer
 local LP = lp.Character.HumanoidRootPart
 
@@ -7,7 +7,7 @@ _AutoPower = 1
 _AutoDiamond = 1
 
 local Tab = Window:MakeTab({
-	Name = "@Pv3Moddz Hub",
+	Name = "Menu Hub",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
