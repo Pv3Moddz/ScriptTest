@@ -1,8 +1,8 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "@Pv3Moddz Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "ScriptTest"})
 
-local tween_s = game:GetService('TweenService')
-local tweeninfo = TweenInfo.new(1,Enum.EasingStyle.Linear)
+local Tween = game:GetService('TweenService')
+local TweenInfo = TweenInfo.new(1,Enum.EasingStyle.Linear)
 
 local Players = game:GetService("Players")
 local lp = Players.LocalPlayer
@@ -29,21 +29,13 @@ end
 
 function AutoWin()
     while _AutoWinV == true do
-        local CFrame = lp.Character.HumanoidRootPart.CFrame
-        local CFrameV = CFrame + Vector3.new(0, -100, 0)
-        bypass_teleport(CFrame + Vector3.new(0, -100, 0))
-        wait(_AutoWin)
-    end
-end
-
-function bypass_teleport(v)
-    if lp.Character and 
-    lp.Character:FindFirstChild('HumanoidRootPart') then
-        local cf = CFrame.new(v)
-        local a = tween_s:Create(lp.Character.HumanoidRootPart,tweeninfo,{CFrame=cf})
-        a:Play()
-        -- a.Completed:Wait()
-        -- print('Teleporting Done!')
+        if lp.Character and lp.Character:FindFirstChild('HumanoidRootPart') then
+            local CFrame = lp.Character.HumanoidRootPart.CFrame
+            local CFrameV = CFrame + Vector3.new(0, -10000, 0)
+            local tween = Tween:Create(lp.Character.HumanoidRootPart,TweenInfo,{CFrame=CFrameV})
+            tween:Play()
+            tween.Completed:Wait(_AutoWin)
+        end
     end
 end
 
