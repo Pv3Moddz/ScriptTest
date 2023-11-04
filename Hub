@@ -1,44 +1,40 @@
+-- Orion Hub
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "@Pv3Moddz Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "ScriptTest"})
+local Window = OrionLib:MakeWindow({Name = "@Pv3Moddz Hub", HidePremium = false, SaveConfig = false, ConfigFolder = "ScriptTest"})
 
+
+-- Tween Teleport
 local Tween = game:GetService('TweenService')
 local TweenInfo = TweenInfo.new(1,Enum.EasingStyle.Linear)
 
-local Players = game:GetService("Players")
-local lp = Players.LocalPlayer
+-- Player Location
+local lp = game.Players.LocalPlayer
 
-_AutoPower = 1
-_AutoPowerV = false
-_AutoDiamondV = false
-_AutoWin = 1
-_AutoWinV = false
+-- variants
+_AutoFarm = false
 
-function AutoPower()
-    while _AutoPowerV == true do
-        game:GetService("ReplicatedStorage").Remotes.TrainBombStrength:FireServer("Bomb 1")
-        wait(_AutoPower)
+
+-- functions
+function AutoFarm()
+    while _AutoPower == true do
+        --game.ReplicatedStorage.Postie.Remotes.ATrack:FireServer("Custom","UI:HUB:ButtonPressed","AutoSlash")
+        game.ReplicatedStorage.Postie.Remotes.PlayerRemotes["GATO_SADS"].ToggleAutoSlash:FireServer()
+        game.ReplicatedStorage.Postie.Remotes.PlayerRemotes["GATO_SADS"].AfkToggle:FireServer()
+        wait(1.0)
     end
 end
 
-function AutoDiamond()
-    while _AutoDiamondV == true do
-        game:GetService("ReplicatedStorage").Remotes.GetGem:FireServer()
-        wait(0.5)
+function TweenTp()
+    if lp.Character and lp.Character:FindFirstChild('HumanoidRootPart') then
+        local hrp = lp.Character.HumanoidRootPart
+        local CFrameV = hrp.CFrame + Vector3.new(0, -100, 0)
+        local tween = Tween:Create(hrp,TweenInfo,{CFrame=CFrameV})
+        tween:Play()
+        --tween.Completed:Wait()
     end
 end
 
-function AutoWin()
-    while _AutoWinV == true do
-        if lp.Character and lp.Character:FindFirstChild('HumanoidRootPart') then
-            local hrp = lp.Character.HumanoidRootPart
-            local CFrameV = hrp.CFrame + Vector3.new(0, -100, 0)
-            local tween = Tween:Create(hrp,TweenInfo,{CFrame=CFrameV})
-            tween:Play()
-            tween.Completed:Wait(_AutoWin)
-        end
-    end
-end
-
+-- Menu Hub
 local Tab = Window:MakeTab({
 	Name = "Menu Hub",
 	Icon = "rbxassetid://4483345998",
@@ -49,57 +45,56 @@ local Section = Tab:AddSection({
 	Name = "SETTINGS"
 })
 
-Tab:AddSlider({
-	Name = "Delay Auto Power",
-	Min = 0,
-	Max = 1000,
-	Default = 1000,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 10,
-	ValueName = "MilleSeg",
-	Callback = function(Value)
-		_AutoPower = Value / 1000
-	end
-})
-
 Tab:AddToggle({
-	Name = "Auto Power",
+	Name = "Auto Farm",
 	Default = false,
 	Callback = function(Value)
-	    _AutoPowerV = Value
-	    AutoPower()
+	    _AutoFarmV = Value
+	    AutoFarm()
 	end
 })
 
-Tab:AddToggle({
-	Name = "Auto Collect Diamond",
-	Default = false,
-	Callback = function(Value)
-	    _AutoDiamondV = Value
-        AutoDiamond()
-	end
+-- Shop Menu
+local Tab = Window:MakeTab({
+	Name = "Menu Shop",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
 })
 
-Tab:AddSlider({
-	Name = "Delay Auto Win",
-	Min = 0,
-	Max = 1000,
-	Default = 1000,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 10,
-	ValueName = "MilleSeg",
-	Callback = function(Value)
-		_AutoWin = Value / 1000
-	end
+local Section = Tab:AddSection({
+	Name = "PET EGG"
 })
 
-Tab:AddToggle({
-	Name = "Auto Win",
-	Default = false,
-	Callback = function(Value)
-	    _AutoWinV = Value
-        AutoWin()
-	end
+Tab:AddButton({
+	Name = "Buy Basic Pet Egg",
+	Callback = function()
+        game.ReplicatedStorage.Remotes.Eggs.Hatch:FireServer("Basic_Pet_Egg","Pets")
+  	end
+})
+
+Tab:AddButton({
+	Name = "Buy Ruined Egg",
+	Callback = function()
+        game.ReplicatedStorage.Remotes.Eggs.Hatch:FireServer("Ruined_Egg","Pets")
+  	end
+})
+
+local Section = Tab:AddSection({
+	Name = "PET EGG ( OP )"
+})
+
+Tab:AddButton({
+	Name = "Buy Dragon Egg ( OP )",
+	Callback = function()
+        game.ReplicatedStorage.Remotes.Eggs.Hatch:FireServer("Ex_Pet_Egg1","Pets")
+  	end
+})
+
+Tab:AddButton({
+	Name = "Buy Heaven Egg ( VERY OP )",
+	Callback = function()
+        game.ReplicatedStorage.Remotes.Eggs.Hatch:FireServer("Heaven_Egg","Pets")
+  	end
 })
 
 OrionLib:Init()
