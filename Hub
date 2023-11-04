@@ -86,6 +86,13 @@ Tab:AddButton({
   	end
 })
 
+Tab:AddButton({
+	Name = "Buy Cold Egg",
+	Callback = function()
+        game.ReplicatedStorage.Remotes.Eggs.HatchEgg:FireServer("Cold_Egg","Pets")
+  	end
+})
+
 local Section = Tab:AddSection({
 	Name = "PET EGG ( OP )"
 })
@@ -100,7 +107,10 @@ Tab:AddButton({
 Tab:AddButton({
 	Name = "Buy Heaven Egg ( VERY OP )",
 	Callback = function()
+	    while i = 0, i < 1000, i++ do
         game.ReplicatedStorage.Remotes.Eggs.HatchEgg:FireServer("Heaven Egg","Pets")
+        wait()
+        end
   	end
 })
 
