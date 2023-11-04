@@ -10,7 +10,7 @@ _AutoWinV = false
 
 function AutoPower()
     while _AutoPowerV == true do
-        game:GetService("ReplicatedStorage").Remotes.TrainBombStrength:FireServer("Bomb 16")
+        game:GetService("ReplicatedStorage").Remotes.TrainBombStrength:FireServer("Bomb 14")
         wait(_AutoPower)
     end
 end
@@ -79,7 +79,7 @@ Tab:AddToggle({
 	Default = false,
 	Callback = function(Value)
 	    _AutoDiamondV = Value
-        AutoDiamond()
+            AutoDiamond()
 	end
 })
 
