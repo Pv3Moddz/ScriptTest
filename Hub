@@ -7,7 +7,7 @@ local TweenInfo = TweenInfo.new(1,Enum.EasingStyle.Linear)
 local Players = game:GetService("Players")
 local lp = Players.LocalPlayer
 
-_AutoPower = 1
+_AutoPower = 0
 _AutoPowerV = false
 _AutoDiamondV = false
 _AutoWin = 1
