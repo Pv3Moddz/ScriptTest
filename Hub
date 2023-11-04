@@ -97,4 +97,56 @@ Tab:AddToggle({
 	end
 })
 
+local Tab = Window:MakeTab({
+	Name = "Shop",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "EGG SHOPS"
+})
+
+Tab:AddButton({
+	Name = "Buy Starter Egg ( 15🏆 )",
+	Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.HatchEgg:InvokeServer("Starter Egg")
+  	end
+})
+
+Tab:AddButton({
+	Name = "Buy Spotted Egg ( 50🏆 )",
+	Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.HatchEgg:InvokeServer("Spotted Egg")
+  	end
+})
+
+Tab:AddButton({
+	Name = "Buy Desert Egg ( 750🏆 )",
+	Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.HatchEgg:InvokeServer("Desert Egg")
+  	end
+})
+
+Tab:AddButton({
+	Name = "Buy Jungle Egg ( 8K🏆 )",
+	Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.HatchEgg:InvokeServer("Jungle Egg")
+  	end
+})
+
+Tab:AddButton({
+	Name = "Buy Cave Egg ( 140K🏆 )",
+	Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.HatchEgg:InvokeServer("Cave Egg")
+  	end
+})
+
+Tab:AddButton({
+	Name = "Buy Island Egg ( 3.9M🏆 )",
+	Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.HatchEgg:InvokeServer("Island Egg")
+  	end
+})
+
 OrionLib:Init()
