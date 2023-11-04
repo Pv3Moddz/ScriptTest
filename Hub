@@ -1,9 +1,11 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "@Pv3Moddz Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "ScriptTest"})
 
+local Players = game:GetService("Players")
+local lp = Players.LocalPlayer
+
 _AutoPower = 1
 _AutoPowerV = false
-_AutoDiamond = 1
 _AutoDiamondV = false
 _AutoWin = 1
 _AutoWinV = false
@@ -18,13 +20,16 @@ end
 function AutoDiamond()
     while _AutoDiamondV == true do
         game:GetService("ReplicatedStorage").Remotes.GetGem:FireServer()
-        wait(_AutoDiamond)
+        wait(0.5)
     end
 end
 
 function AutoWin()
     while _AutoWinV == true do
-        game:GetService("ReplicatedStorage").Remotes.AddWin:FireServer()
+        local char = lp.Character
+        local hum = char.Humanoid
+        local hrp = char.HumanoidRootPart
+        hrp.CFrame = hrp.CFrame + Vector3.new(0, 10, 0)
         wait(_AutoWin)
     end
 end
@@ -61,25 +66,12 @@ Tab:AddToggle({
 	end
 })
 
-Tab:AddSlider({
-	Name = "Delay Auto Diamond",
-	Min = 0,
-	Max = 1000,
-	Default = 1000,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 10,
-	ValueName = "MilleSeg",
-	Callback = function(Value)
-		_AutoDiamond = Value / 1000
-	end
-})
-
 Tab:AddToggle({
-	Name = "Auto Diamond",
+	Name = "Auto Collect Diamond",
 	Default = false,
 	Callback = function(Value)
 	    _AutoDiamondV = Value
-            AutoDiamond()
+        AutoDiamond()
 	end
 })
 
