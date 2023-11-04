@@ -79,6 +79,13 @@ Tab:AddButton({
   	end
 })
 
+Tab:AddButton({
+	Name = "Buy Pirate Egg",
+	Callback = function()
+        game.ReplicatedStorage.Remotes.Eggs.HatchEgg:FireServer("Pirate_Egg","Pets")
+  	end
+})
+
 local Section = Tab:AddSection({
 	Name = "PET EGG ( OP )"
 })
@@ -97,4 +104,14 @@ Tab:AddButton({
   	end
 })
 
+local Section = Tab:AddSection({
+	Name = "Sword"
+})
+
+Tab:AddButton({
+	Name = "Buy Reforge",
+	Callback = function()
+        game.ReplicatedStorage.Postie.Remotes.ReforgeWeapon:FireServer("Soda Blade")
+  	end
+})
 OrionLib:Init()
