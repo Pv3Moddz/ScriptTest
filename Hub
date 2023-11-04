@@ -7,7 +7,7 @@ local TweenInfo = TweenInfo.new(1,Enum.EasingStyle.Linear)
 local Players = game:GetService("Players")
 local lp = Players.LocalPlayer
 
-_AutoPower = 0
+_AutoPower = 1
 _AutoPowerV = false
 _AutoDiamondV = false
 _AutoWin = 1
@@ -16,7 +16,7 @@ _AutoWinV = false
 function AutoPower()
     while _AutoPowerV == true do
         game:GetService("ReplicatedStorage").Remotes.TrainBombStrength:FireServer("Bomb 1")
-        wait(_AutoPower)
+        wait(0)
     end
 end
 
@@ -31,7 +31,7 @@ function AutoWin()
     while _AutoWinV == true do
         if lp.Character and lp.Character:FindFirstChild('HumanoidRootPart') then
             local CFrame = lp.Character.HumanoidRootPart.CFrame
-            local CFrameV = CFrame + Vector3.new(0, -10000, 0)
+            local CFrameV = CFrame + Vector3.new(0, -100, 0)
             local tween = Tween:Create(lp.Character.HumanoidRootPart,TweenInfo,{CFrame=CFrameV})
             tween:Play()
             tween.Completed:Wait(_AutoWin)
