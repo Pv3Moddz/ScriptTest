@@ -1,1 +1,127 @@
+-- Orion Hub
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "@Pv3Moddz Hub", HidePremium = false, SaveConfig = false, ConfigFolder = "ScriptTest"})
 
+
+-- Tween Teleport
+local Tween = game:GetService('TweenService')
+local TweenInfo = TweenInfo.new(1,Enum.EasingStyle.Linear)
+
+-- Player Location
+local lp = game.Players.LocalPlayer
+
+-- variants
+_AutoFarm = false
+
+
+-- functions
+function AutoFarm()
+    while _AutoPower == true do
+        --game.ReplicatedStorage.Postie.Remotes.ATrack:FireServer("Custom","UI:HUB:ButtonPressed","AutoSlash")
+        game.ReplicatedStorage.Postie.Remotes.PlayerRemotes["GATO_SADS"].ToggleAutoSlash:FireServer()
+        game.ReplicatedStorage.Postie.Remotes.PlayerRemotes["GATO_SADS"].AfkToggle:FireServer()
+        wait(1.0)
+    end
+end
+
+function TweenTp()
+    if lp.Character and lp.Character:FindFirstChild('HumanoidRootPart') then
+        local hrp = lp.Character.HumanoidRootPart
+        local CFrameV = hrp.CFrame + Vector3.new(0, -100, 0)
+        local tween = Tween:Create(hrp,TweenInfo,{CFrame=CFrameV})
+        tween:Play()
+        --tween.Completed:Wait()
+    end
+end
+
+-- Menu Hub
+local Tab = Window:MakeTab({
+	Name = "Menu Hub",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "SETTINGS"
+})
+
+Tab:AddToggle({
+	Name = "Auto Farm",
+	Default = false,
+	Callback = function(Value)
+	    _AutoFarmV = Value
+	    AutoFarm()
+	end
+})
+
+-- Shop Menu
+local Tab = Window:MakeTab({
+	Name = "Menu Shop",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "PET EGG"
+})
+
+Tab:AddButton({
+	Name = "Buy Basic Pet Egg",
+	Callback = function()
+        game.ReplicatedStorage.Remotes.Eggs.HatchEgg:FireServer("Basic_Pet_Egg","Pets")
+  	end
+})
+
+Tab:AddButton({
+	Name = "Buy Ruined Egg",
+	Callback = function()
+        game.ReplicatedStorage.Remotes.Eggs.HatchEgg:FireServer("Ruined_Egg","Pets")
+  	end
+})
+
+Tab:AddButton({
+	Name = "Buy Pirate Egg",
+	Callback = function()
+        game.ReplicatedStorage.Remotes.Eggs.HatchEgg:FireServer("Pirate_Egg","Pets")
+  	end
+})
+
+Tab:AddButton({
+	Name = "Buy Cold Egg",
+	Callback = function()
+        game.ReplicatedStorage.Remotes.Eggs.HatchEgg:FireServer("Cold_Egg","Pets")
+  	end
+})
+
+local Section = Tab:AddSection({
+	Name = "PET EGG ( OP )"
+})
+
+Tab:AddButton({
+	Name = "Buy Dragon Egg ( OP )",
+	Callback = function()
+        game.ReplicatedStorage.Remotes.Eggs.HatchEgg:FireServer("Ex_Pet_Egg1","Pets")
+  	end
+})
+
+Tab:AddButton({
+	Name = "Buy Heaven Egg ( VERY OP )",
+	Callback = function()
+	    while local i = 0, i < 1000, i++ do
+        game.ReplicatedStorage.Remotes.Eggs.HatchEgg:FireServer("Heaven Egg","Pets")
+        wait()
+        end
+  	end
+})
+
+local Section = Tab:AddSection({
+	Name = "Sword"
+})
+
+Tab:AddButton({
+	Name = "Buy Reforge",
+	Callback = function()
+        game.ReplicatedStorage.Postie.Remotes.ReforgeWeapon:FireServer("Soda Blade")
+  	end
+})
+OrionLib:Init()
