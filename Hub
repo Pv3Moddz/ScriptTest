@@ -93,7 +93,7 @@ Tab:AddButton({
 Tab:AddButton({
 	Name = "Buy Heaven Egg ( VERY OP )",
 	Callback = function()
-        game.ReplicatedStorage.Remotes.Eggs.HatchEgg:FireServer("Heaven_Egg","Pets")
+        game.ReplicatedStorage.Remotes.Eggs.HatchEgg:FireServer("Heaven Egg","Pets")
   	end
 })
 
