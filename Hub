@@ -107,7 +107,7 @@ Tab:AddButton({
 Tab:AddButton({
 	Name = "Buy Heaven Egg ( VERY OP )",
 	Callback = function()
-	    while i = 0, i < 1000, i++ do
+	    while local i = 0, i < 1000, i++ do
         game.ReplicatedStorage.Remotes.Eggs.HatchEgg:FireServer("Heaven Egg","Pets")
         wait()
         end
