@@ -2,7 +2,23 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Window = OrionLib:MakeWindow({Name = "@Pv3Moddz Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "ScriptTest"})
 
 _AutoPower = 1
+_AutoPowerV = false
 _AutoDiamond = 1
+_AutoDiamondV = false
+
+function AutoPower()
+    while Value == true do
+        game:GetService("ReplicatedStorage").Remotes.TrainBombStrength:FireServer("Bomb 14")
+        wait(_AutoPower)
+    end
+end
+
+function AutoDiamond()
+    while Value == true do
+        game:GetService("ReplicatedStorage").Remotes.GetGem:FireServer()
+        wait(_AutoDiamond)
+    end
+end
 
 local Tab = Window:MakeTab({
 	Name = "Menu Hub",
@@ -31,10 +47,8 @@ Tab:AddToggle({
 	Name = "Auto Power",
 	Default = false,
 	Callback = function(Value)
-            while Value == true do
-                game:GetService("ReplicatedStorage").Remotes.TrainBombStrength:FireServer("Bomb 14")
-                wait(_AutoPower)
-            end
+	    _AutoPowerV = Value
+	    AutoPower()
 	end
 })
 
@@ -55,10 +69,8 @@ Tab:AddToggle({
 	Name = "Auto Diamond",
 	Default = false,
 	Callback = function(Value)
-            while Value == true do
-                game:GetService("ReplicatedStorage").Remotes.GetGem:FireServer()
-                wait(_AutoDiamond)
-            end
+	    _AutoDiamondV = Value
+        AutoDiamond()
 	end
 })
 
