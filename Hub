@@ -5,6 +5,8 @@ _AutoPower = 1
 _AutoPowerV = false
 _AutoDiamond = 1
 _AutoDiamondV = false
+_AutoWin = 1
+_AutoWinV = false
 
 function AutoPower()
     while _AutoPowerV == true do
@@ -17,6 +19,13 @@ function AutoDiamond()
     while _AutoDiamondV == true do
         game:GetService("ReplicatedStorage").Remotes.GetGem:FireServer()
         wait(_AutoDiamond)
+    end
+end
+
+function AutoWin()
+    while _AutoWinV == true do
+        game:GetService("ReplicatedStorage").Remotes.AddWin:FireServer()
+        wait(_AutoWin)
     end
 end
 
@@ -71,6 +80,28 @@ Tab:AddToggle({
 	Callback = function(Value)
 	    _AutoDiamondV = Value
         AutoDiamond()
+	end
+})
+
+Tab:AddSlider({
+	Name = "Delay Auto Win",
+	Min = 0,
+	Max = 1000,
+	Default = 1000,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 10,
+	ValueName = "MilleSeg",
+	Callback = function(Value)
+		_AutoWin = Value / 1000
+	end
+})
+
+Tab:AddToggle({
+	Name = "Auto Win",
+	Default = false,
+	Callback = function(Value)
+	    _AutoWinV = Value
+        AutoWin()
 	end
 })
 
