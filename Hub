@@ -68,14 +68,14 @@ local Section = Tab:AddSection({
 Tab:AddButton({
 	Name = "Buy Basic Pet Egg",
 	Callback = function()
-        game.ReplicatedStorage.Remotes.Eggs.Hatch:FireServer("Basic_Pet_Egg","Pets")
+        game.ReplicatedStorage.Remotes.Eggs.HatchEgg:FireServer("Basic_Pet_Egg","Pets")
   	end
 })
 
 Tab:AddButton({
 	Name = "Buy Ruined Egg",
 	Callback = function()
-        game.ReplicatedStorage.Remotes.Eggs.Hatch:FireServer("Ruined_Egg","Pets")
+        game.ReplicatedStorage.Remotes.Eggs.HatchEgg:FireServer("Ruined_Egg","Pets")
   	end
 })
 
@@ -86,14 +86,14 @@ local Section = Tab:AddSection({
 Tab:AddButton({
 	Name = "Buy Dragon Egg ( OP )",
 	Callback = function()
-        game.ReplicatedStorage.Remotes.Eggs.Hatch:FireServer("Ex_Pet_Egg1","Pets")
+        game.ReplicatedStorage.Remotes.Eggs.HatchEgg:FireServer("Ex_Pet_Egg1","Pets")
   	end
 })
 
 Tab:AddButton({
 	Name = "Buy Heaven Egg ( VERY OP )",
 	Callback = function()
-        game.ReplicatedStorage.Remotes.Eggs.Hatch:FireServer("Heaven_Egg","Pets")
+        game:GetService("ReplicatedStorage").Remotes.Eggs.HatchEgg:FireServer("Heaven_Egg","Pets")
   	end
 })
 
