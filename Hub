@@ -16,7 +16,7 @@ _AutoWinV = false
 function AutoPower()
     while _AutoPowerV == true do
         game:GetService("ReplicatedStorage").Remotes.TrainBombStrength:FireServer("Bomb 1")
-        wait()
+        wait(_AutoPower)
     end
 end
 
