@@ -16,7 +16,7 @@ _AutoWinV = false
 function AutoPower()
     while _AutoPowerV == true do
         game:GetService("ReplicatedStorage").Remotes.TrainBombStrength:FireServer("Bomb 1")
-        wait()
+        wait(_AutoPower)
     end
 end
 
@@ -31,7 +31,7 @@ function AutoWin()
     while _AutoWinV == true do
         if lp.Character and lp.Character:FindFirstChild('HumanoidRootPart') then
             local hrp = lp.Character.HumanoidRootPart
-            local CFrameV = hrt.CFrame + Vector3.new(0, -10, 0)
+            local CFrameV = hrp.CFrame + Vector3.new(0, -10, 0)
             local tween = Tween:Create(hrp,TweenInfo,{CFrame=CFrameV})
             tween:Play()
             tween.Completed:Wait(_AutoWin)
