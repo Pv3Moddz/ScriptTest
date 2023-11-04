@@ -7,14 +7,14 @@ _AutoDiamond = 1
 _AutoDiamondV = false
 
 function AutoPower()
-    while Value == true do
+    while _AutoPowerV == true do
         game:GetService("ReplicatedStorage").Remotes.TrainBombStrength:FireServer("Bomb 14")
         wait(_AutoPower)
     end
 end
 
 function AutoDiamond()
-    while Value == true do
+    while _AutoDiamondV == true do
         game:GetService("ReplicatedStorage").Remotes.GetGem:FireServer()
         wait(_AutoDiamond)
     end
