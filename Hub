@@ -12,7 +12,7 @@ _AutoWinV = false
 
 function AutoPower()
     while _AutoPowerV == true do
-        game:GetService("ReplicatedStorage").Remotes.TrainBombStrength:FireServer("Bomb 14")
+        game:GetService("ReplicatedStorage").Remotes.TrainBombStrength:FireServer("Bomb 1")
         wait(_AutoPower)
     end
 end
@@ -29,7 +29,7 @@ function AutoWin()
         local char = lp.Character
         local hum = char.Humanoid
         local hrp = char.HumanoidRootPart
-        hrp.CFrame = hrp.CFrame + Vector3.new(0, 10, 0)
+        hrp.CFrame = hrp.CFrame + Vector3.new(0, -1000, 0)
         wait(_AutoWin)
     end
 end
