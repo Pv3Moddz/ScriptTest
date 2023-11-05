@@ -10,6 +10,9 @@ local TweenInfo = TweenInfo.new(1,Enum.EasingStyle.Linear)
 -- Player Location
 local lp = game.Players.LocalPlayer
 
+-- variants
+_AutoFarm =  false
+
 -- Get Mob
 local function GetMob()
         local dist, mob = math.huge
@@ -25,10 +28,6 @@ local function GetMob()
         return mob
     end
 
--- variants
-_AutoFarm =  false
-
-
 -- functions
 function AutoFarm()
     while _AutoFarm == true do
@@ -37,7 +36,7 @@ function AutoFarm()
         if MobL != 'nill' and MobL:FindFirstChild('HumanoidRootPart') then
             hpr.CFrame = MobL.HumanoidRootPart.CFrame + Vector.new(0, 5, 0)
             wait(1.0)
-        do
+        end
     end
 end
 
