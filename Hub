@@ -35,7 +35,7 @@ function AutoFarm()
         local hpr = lp.Character.HumanoidRootPart
         local MobL = GetMob()
         if MobL and MobL:FindFirstChild('HumanoidRootPart') then
-            hpr.CFrame = MobL.HumanoidRootPart.CFrame + Vector3.new(0, 5, 0)
+            MobL.HumanoidRootPart.CFrame = hpr.CFrame + Vector3.new(0, 5, 0)
         end
         wait(1.0)
     end
