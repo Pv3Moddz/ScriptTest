@@ -16,6 +16,7 @@ _AutoFarm =  false
 -- Get Mob
 local function GetMob()
         local dist, mob = math.huge
+        local hpr = lp.Character.HumanoidRootPart
         for i,v in pairs(workspace.SpawnedEnemies:GetChildren()) do
             if v:IsA('Model') and v:FindFirstChild('HumanoidRootPart') then
                 local mag = (hpr.Position - v.HumanoidRootPart.Position).magnitude
@@ -33,7 +34,7 @@ function AutoFarm()
     while _AutoFarm == true do
         local hpr = lp.Character.HumanoidRootPart
         local MobL = GetMob()
-        if MobL != 'nill' and MobL:FindFirstChild('HumanoidRootPart') then
+        if MobL and MobL:FindFirstChild('HumanoidRootPart') then
             hpr.CFrame = MobL.HumanoidRootPart.CFrame + Vector.new(0, 5, 0)
             wait(1.0)
         end
